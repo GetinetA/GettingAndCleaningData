@@ -31,9 +31,9 @@ The R script included called run_analysis.R will do the following.
 3. Open RStudio and then set its working directory to the parent folder of ```UCI HAR Dataset``` using ```setwd()``` function.
 
   For example if the data folder is ```"C:/COURSERA/Getting and Cleaning Data/Project/UCI HAR Dataset"```, the following command will set the working directory to parent directory of data folder
-  ```setwd("C:/COURSERA/Getting and Cleaning Data/Project")```
+    ```setwd("C:/COURSERA/Getting and Cleaning Data/Project")```
 4. In RStudio, write the following command to run ```run_analysis.R``` script
-  ```source("run_analysis.R")``` 
+    ```source("run_analysis.R")``` 
 then it will generate a new file ```tidy_data.txt``` in your working directory.
 
 __Note: The above steps are intended to work only with RStudio__
