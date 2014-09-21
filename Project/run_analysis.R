@@ -32,7 +32,9 @@ require("reshape2")
 ## Read data, subject and label(activity) for training sets
 
 trainSubject <- read.table("./UCI HAR Dataset/train/subject_train.txt")
+names(trainSubject) <-  c("subject")
 trainLabel <- read.table("./UCI HAR Dataset/train/y_train.txt")
+names(trainLabel) <-  c("activityNum")
 trainData <- read.table("./UCI HAR Dataset/train/X_train.txt")
 
 ## Bind data, subject and activity label for training set
@@ -40,8 +42,10 @@ dtTrainSet <- cbind(trainSubject, trainLabel, trainData)
 
 ## Read data, subject and label(activity) for test sets
 
-testSubject <- read.table("./UCI HAR Dataset/test/subject_test.txt")
+testSubject <- read.table("./UCI HAR Dataset/test/subject_test.txt"
+names(testSubject) <-  c("subject")
 testLabel <- read.table("./UCI HAR Dataset/test/y_test.txt")
+names(testLabel) <-  c("activityNum")
 testData <- read.table("./UCI HAR Dataset/test/X_test.txt")
 
 # Bind data, subject and activity label for test set
@@ -61,7 +65,8 @@ names(dtFeatures) <- c("featureNum", "featureName")
   ## add feature code corresponding to measurement variables
 dtFeatures$featureCode <- paste0("V", dtFeatures[,"featureNum"])
 
-dtFeatures <- grep("mean\\(\\)|std\\(\\)", dtFeatures$featureName)
+##dtFeatures <- grep("mean\\(\\)|std\\(\\)", dtFeatures$featureName)
+dtFeatures <- dtFeatures[grep("mean\\(\\)|std\\(\\)", dtFeatures$featureName), ]
 
 names(dtTrainingTestMerged[1]) <-  c("subject")
 names(dtTrainingTestMerged[2]) <-  c("activityNum")
@@ -85,9 +90,9 @@ dtTrainingTestMerged <- merge(dtTrainingTestMerged, activityLabels, by = "activi
 ## ===== 5. Creates tidy data set with the average of each variable for each activity and each subject =====
 
 id_labels   = c("subject", "activityNum", "activityLabel")
-melt_data      = melt(data, id = id_labels, measure.vars = data_labels)
+melt_data      = melt(data, id = id_labels, variable.name = "featureVariable", value.name = "featurValue")
 
-tidy_data   = dcast(melt_data, subject + Activity_Label ~ variable, mean)
+tidy_data   = dcast(melt_data, subject + activityLabel ~ variable, mean)
 
 write.table(tidy_data, file = "./tidy_data.txt")
 
