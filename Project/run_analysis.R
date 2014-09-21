@@ -83,9 +83,13 @@ names(activityLabels) = c("activityNum", "activityName")
 
 dtTrainingTestMerged$activityName= activityLabels[dtTrainingTestMerged[,2], 2]
 
+
 ## ===== 5. Creates tidy data set with the average of each variable for each activity and each subject =====
 
 melt_data <- melt(data, id.vars = c("subject", "activityNum", "activityName"))
+
+  ## add labels the data set with descriptive variable names
+melt_data$activityName = dtFeatures[melt_data$variable, 3]
 
 tidy_data <- dcast(melt_data, subject + activityNum + activityName ~ variable, mean)
 
