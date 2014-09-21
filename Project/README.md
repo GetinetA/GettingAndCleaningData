@@ -37,7 +37,6 @@ __Note: The following steps are intended to work only with RStudio__
 4. In RStudio, write the following command to run ```run_analysis.R``` script, it will generate a new file ```tidy_data.txt``` in your working directory.
   
   ```source("run_analysis.R")```
-4. In RStudio, write the following command to run ```run_analysis.R``` script, it will generate a new file ```tidy_data.txt``` in your working directory 
   
   ```source("run_analysis.R")```
 
