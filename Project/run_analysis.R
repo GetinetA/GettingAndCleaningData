@@ -1,3 +1,9 @@
+
+## The purpose of this script is to collect, work with, and clean a data set. 
+## The goal is to prepare tidy data that can be used for later analysis.
+## See the Readme.md for more information about the data set and step to 
+## follow to work with this script
+
 ## Create R script called run_analysis.R that does the following:
 ## 1. Merges the training and the test sets to create one data set.
 ## 2. Extracts only the measurements on the mean and standard deviation for each measurement.
@@ -46,12 +52,13 @@ dtTestSet <- cbind(testSubject, testLabel, testData)
 dtTrainingTestMerged <- rbind(dtTrainSet, dtTestSet)
 
 
-## ===== 2. Extracts only the measurements on the mean and standard deviation for each measurement. =====
+## ===== 2. Extracts only the measurements on the mean and standard deviation for each measurement =====
 
 ## Load data column feature names
 dtFeatures <- read.table("./UCI HAR Dataset/features.txt")
 names(dtFeatures) <- c("featureNum", "featureName")
-## add feature code corresponding to measurement variables
+
+  ## add feature code corresponding to measurement variables
 dtFeatures$featureCode <- paste0("V", dtFeatures[,"featureNum"])
 
 dtFeatures <- grep("mean\\(\\)|std\\(\\)", dtFeatures$featureName)
@@ -62,18 +69,27 @@ names(dtTrainingTestMerged[2]) <-  c("activityNum")
 dtTrainingTestMerged <- subset(dtTrainingTestMerged, select = c("subject", "activityNum", dtFeatures[ , 3]))
 
 
-## ===== 3. Uses descriptive activity names to name the activities in the data set. =====
-activity_labels <- read.table("./UCI HAR Dataset/activity_labels.txt")
+## ===== 3. Uses descriptive activity names to name the activities in the data set =====
+
+  ##This will be used to add descriptive names to the activities
+activityLabels <- read.table("./UCI HAR Dataset/activity_labels.txt")
+names(activityLabels) = c("activityNum", "activityLabel")
 
 
+## ===== 4. Appropriately labels the data set with descriptive variable names =====
+
+##dtTrainingTestMerged[,2] = activityLabels[dtTrainingTestMerged[,2]]
+dtTrainingTestMerged <- merge(dtTrainingTestMerged, activityLabels, by = "activityNum", all.x = TRUE)
 
 
+## ===== 5. Creates tidy data set with the average of each variable for each activity and each subject =====
 
+id_labels   = c("subject", "activityNum", "activityLabel")
+melt_data      = melt(data, id = id_labels, measure.vars = data_labels)
 
+tidy_data   = dcast(melt_data, subject + Activity_Label ~ variable, mean)
 
-
-
-
+write.table(tidy_data, file = "./tidy_data.txt")
 
 
 
