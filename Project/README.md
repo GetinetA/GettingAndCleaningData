@@ -36,7 +36,7 @@ The R script included called run_analysis.R will do the following.
   ```source("run_analysis.R")``` 
 then it will generate a new file ```tidy_data.txt``` in your working directory.
 
-  __Note: The above steps are intended to work only with RStudio__
+__Note: The above steps are intended to work only with RStudio__
 
 ## Dependencies
 
