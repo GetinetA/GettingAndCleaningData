@@ -42,7 +42,7 @@ dtTrainSet <- cbind(trainSubject, trainLabel, trainData)
 
 ## Read data, subject and label(activity) for test sets
 
-testSubject <- read.table("./UCI HAR Dataset/test/subject_test.txt"
+testSubject <- read.table("./UCI HAR Dataset/test/subject_test.txt")
 names(testSubject) <-  c("subject")
 testLabel <- read.table("./UCI HAR Dataset/test/y_test.txt")
 names(testLabel) <-  c("activityNum")
@@ -68,31 +68,26 @@ dtFeatures$featureCode <- paste0("V", dtFeatures[,"featureNum"])
 ##dtFeatures <- grep("mean\\(\\)|std\\(\\)", dtFeatures$featureName)
 dtFeatures <- dtFeatures[grep("mean\\(\\)|std\\(\\)", dtFeatures$featureName), ]
 
-names(dtTrainingTestMerged[1]) <-  c("subject")
-names(dtTrainingTestMerged[2]) <-  c("activityNum")
 
 dtTrainingTestMerged <- subset(dtTrainingTestMerged, select = c("subject", "activityNum", dtFeatures[ , 3]))
 
 
 ## ===== 3. Uses descriptive activity names to name the activities in the data set =====
 
+
   ##This will be used to add descriptive names to the activities
 activityLabels <- read.table("./UCI HAR Dataset/activity_labels.txt")
-names(activityLabels) = c("activityNum", "activityLabel")
-
+names(activityLabels) = c("activityNum", "activityName")
 
 ## ===== 4. Appropriately labels the data set with descriptive variable names =====
 
-##dtTrainingTestMerged[,2] = activityLabels[dtTrainingTestMerged[,2]]
-dtTrainingTestMerged <- merge(dtTrainingTestMerged, activityLabels, by = "activityNum", all.x = TRUE)
-
+dtTrainingTestMerged$activityName= activityLabels[dtTrainingTestMerged[,2], 2]
 
 ## ===== 5. Creates tidy data set with the average of each variable for each activity and each subject =====
 
-id_labels   = c("subject", "activityNum", "activityLabel")
-melt_data      = melt(data, id = id_labels, variable.name = "featureVariable", value.name = "featurValue")
+melt_data <- melt(data, id.vars = c("subject", "activityNum", "activityName"))
 
-tidy_data   = dcast(melt_data, subject + activityLabel ~ variable, mean)
+tidy_data <- dcast(melt_data, subject + activityNum + activityName ~ variable, mean)
 
 write.table(tidy_data, file = "./tidy_data.txt")
 
