@@ -36,7 +36,7 @@ __Note: The following steps are intended to work only with RStudio__
   ```setwd("C:/COURSERA/Getting and Cleaning Data/Project")```
 4. In RStudio, write the following command:   ```source("run_analysis.R")``` 
 
-to run ```run_analysis.R``` script, it will generate a new file ```tidy_data.txt``` in your working directory
+  to run ```run_analysis.R``` script, it will generate a new file ```tidy_data.txt``` in your working directory
   
 5. Use generated ```tidy_data.txt``` file for analysis
 
