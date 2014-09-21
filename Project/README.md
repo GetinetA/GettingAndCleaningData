@@ -21,6 +21,7 @@ The R script included called run_analysis.R will do the following.
 4. Appropriately labels the data set with descriptive activity names.
 5. Creates a second, independent tidy data set with the average of each variable for each activity and each subject.
 
+__Note: The following steps are intended to work only with RStudio__
 
 ## Steps to follow on this project 
 
@@ -33,7 +34,11 @@ The R script included called run_analysis.R will do the following.
   For example if the data folder is ```"C:/COURSERA/Getting and Cleaning Data/Project/UCI HAR Dataset"```, the following command will set the working directory to parent directory of data folder
   
   ```setwd("C:/COURSERA/Getting and Cleaning Data/Project")```
+3. In RStudio, write the following command to run ```run_analysis.R``` script, it will generate a new file ```tidy_data.txt``` in your working directory.
+
+  For example if the data folder is ```"C:/COURSERA/Getting and Cleaning Data/Project/UCI HAR Dataset"```, the following command will set the working directory to parent directory of data folder
   
+  ```setwd("C:/COURSERA/Getting and Cleaning Data/Project")```
 4. In RStudio, write the following command to run ```run_analysis.R``` script, it will generate a new file ```tidy_data.txt``` in your working directory 
   
   ```source("run_analysis.R")```
