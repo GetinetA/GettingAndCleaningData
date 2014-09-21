@@ -79,14 +79,16 @@ dtTrainingTestMerged <- subset(dtTrainingTestMerged, select = c("subject", "acti
 activityLabels <- read.table("./UCI HAR Dataset/activity_labels.txt")
 names(activityLabels) = c("activityNum", "activityName")
 
+dtTrainingTestMerged$activityName = activityLabels[dtTrainingTestMerged[,2], 2]
+
 ## ===== 4. Appropriately labels the data set with descriptive variable names =====
 
-dtTrainingTestMerged$activityName= activityLabels[dtTrainingTestMerged[,2], 2]
+names(dtTrainingTestMerged)[3:68] <- dtFeatures$featureName
 
 
 ## ===== 5. Creates tidy data set with the average of each variable for each activity and each subject =====
 
-melt_data <- melt(data, id.vars = c("subject", "activityNum", "activityName"))
+melt_data <- melt(dtTrainingTestMerged, id.vars = c("subject", "activityNum", "activityName"))
 
   ## add labels the data set with descriptive variable names
 melt_data$activityName = dtFeatures[melt_data$variable, 3]
