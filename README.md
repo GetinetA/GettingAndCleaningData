@@ -1,4 +1,4 @@
 GettingAndCleaningData
 ======================
 
-Repository for Coursera Getting And Cleaning Data course
+Repository for Coursera "Getting And Cleaning Data" course
