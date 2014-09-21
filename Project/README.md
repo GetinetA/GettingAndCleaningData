@@ -34,11 +34,9 @@ __Note: The following steps are intended to work only with RStudio__
   For example if the data folder is ```"C:/COURSERA/Getting and Cleaning Data/Project/UCI HAR Dataset"```, the following command will set the working directory to parent directory of data folder
   
   ```setwd("C:/COURSERA/Getting and Cleaning Data/Project")```
-3. In RStudio, write the following command to run ```run_analysis.R``` script, it will generate a new file ```tidy_data.txt``` in your working directory.
-
-  For example if the data folder is ```"C:/COURSERA/Getting and Cleaning Data/Project/UCI HAR Dataset"```, the following command will set the working directory to parent directory of data folder
+4. In RStudio, write the following command to run ```run_analysis.R``` script, it will generate a new file ```tidy_data.txt``` in your working directory.
   
-  ```setwd("C:/COURSERA/Getting and Cleaning Data/Project")```
+  ```source("run_analysis.R")```
 4. In RStudio, write the following command to run ```run_analysis.R``` script, it will generate a new file ```tidy_data.txt``` in your working directory 
   
   ```source("run_analysis.R")```
