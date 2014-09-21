@@ -4,3 +4,24 @@
 ## 3. Uses descriptive activity names to name the activities in the data set
 ## 4. Appropriately labels the data set with descriptive activity names.
 ## 5. Creates a second, independent tidy data set with the average of each variable for each activity and each subject.
+
+
+
+## Check dependencies and install package
+
+if (!require("data.table")) {
+  install.packages("data.table")
+}
+
+if (!require("reshape2")) {
+  install.packages("reshape2")
+}
+
+require("data.table")
+require("reshape2")
+
+
+
+
+
+
