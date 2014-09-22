@@ -97,19 +97,3 @@ melt_data$activityName = dtFeatures[melt_data$variable, 3]
 tidy_data <- dcast(melt_data, subject + activityNum ~ variable, mean)
 
 write.table(tidy_data, file = "./tidy_data.txt")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
